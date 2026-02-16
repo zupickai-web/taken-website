@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taken - Blind Dating App</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700;1,900&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -449,6 +451,34 @@
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
     .dot-pattern { display: none; }
     .section-title { font-size: 32px; }
+  }
+
+  /* Mobile nav toggle */
+  .nav-links.show {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(15,15,26,0.98);
+    backdrop-filter: blur(14px);
+    padding: 20px 0;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 99;
+  }
+  .nav-links.show li {
+    list-style: none;
+  }
+  .nav-links.show a {
+    display: block;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .nav-links.show a:hover {
+    background: rgba(255,255,255,0.04);
   }
 </style>
 </head>

@@ -407,18 +407,27 @@
     .navbar { padding: 10px 20px; }
     .nav-links { display: none; }
     .hamburger { display: block; }
-    .hero { padding: 100px 20px 60px; min-height: auto; }
-    .hero-content { flex-direction: column; text-align: center; }
-    .hero-left h1 { font-size: 36px; }
-    .hero-left h1 .taken-text { font-size: 40px; }
-    .hero-desc { margin: 0 auto 30px; }
-    .store-buttons { justify-content: center; }
+    .hero { padding: 80px 20px 30px; min-height: auto; }
+    .hero-content { flex-direction: column; text-align: center; gap: 20px; }
+    .hero-left h1 { font-size: 32px; margin-bottom: 4px; }
+    .hero-left h1 .taken-text { font-size: 36px; }
+    .hero-badge { margin-bottom: 12px; padding: 5px 14px; font-size: 11px; }
+    .hero-tagline { font-size: 15px; margin-bottom: 0; }
+    .hero-desc { display: none; }
+    .download-label { display: none; }
+    .hero-left .store-buttons { display: none; }
+    .phone-mockup-hero { width: 180px; height: 370px; border-radius: 30px; border-width: 3px; padding: 8px; }
+    .phone-screen { border-radius: 24px; }
+    .phone-screen video { border-radius: 24px; }
+    .phone-mockup-hero::before { width: 70px; height: 18px; border-radius: 0 0 10px 10px; }
+    .phone-mockup-hero::after { width: 8px; height: 8px; top: 10px; }
+    .phone-glow { width: 250px; height: 250px; }
     .hero-image { max-width: 340px; }
-    .phone-mockup-hero { width: 240px; height: 500px; border-radius: 36px; }
-    .phone-screen { border-radius: 28px; }
-    .phone-screen video { border-radius: 28px; }
-    .phone-mockup-hero::before { width: 80px; height: 22px; }
     .hero-bg-video { width: 100%; opacity: 0.06; }
+    .hero-mobile-buttons { display: flex !important; justify-content: center; gap: 12px; }
+    .hero-mobile-buttons .store-btn { padding: 8px 16px; }
+    .hero-mobile-buttons .store-name { font-size: 13px; }
+    .hero-mobile-buttons .store-label { font-size: 8px; }
     .features-inner { flex-direction: column; text-align: center; }
     .features { padding: 60px 20px; }
     .features-phone { width: 220px; height: 450px; }
@@ -536,9 +545,19 @@
         </div>
       </div>
     </div>
+    <!-- Mobile-only download buttons (below phone) -->
+    <div class="hero-mobile-buttons" style="display:none;">
+      <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div><span class="store-label">Available on the</span><span class="store-name">App Store</span></div>
+      </a>
+      <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm.892-.558l11.43 6.528L12.56 11.2 4.502 1.256zM16.8 8.648L19.3 10.07a1.084 1.084 0 0 1 0 1.86L16.8 13.352l-3.77-3.375 3.77-3.329zm-.942.536L12.56 12.8l3.37 3.416-11.43 6.528L15.858 9.184z"/></svg>
+        <div><span class="store-label">Available on the</span><span class="store-name">Google Play</span></div>
+      </a>
+    </div>
   </div>
 </section>
-
 <!-- EXPLORE FEATURES -->
 <section class="features" id="features">
   <div class="features-inner">
@@ -791,6 +810,14 @@
       }
     });
   });
+</script>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('show');
+  });
+});
 </script>
 </body>
 </html>

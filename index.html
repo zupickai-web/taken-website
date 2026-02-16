@@ -47,7 +47,6 @@
 
   /* ===== HERO ===== */
   .hero { padding: 120px 60px 80px; position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
-  .hero-bg-video { position: absolute; top: 0; right: 0; width: 50%; height: 100%; object-fit: cover; opacity: 0.12; pointer-events: none; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(230,57,70,0.07) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(0,180,216,0.05) 0%, transparent 50%); pointer-events: none; }
   .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, var(--bg-dark), transparent); pointer-events: none; }
   .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 50px; position: relative; z-index: 2; }
@@ -58,6 +57,40 @@
   .hero-left h1 .taken-text { color: var(--red); font-family: 'Dancing Script', cursive; font-size: 58px; }
   .hero-tagline { font-size: 18px; color: var(--cyan); font-weight: 500; margin-bottom: 16px; }
   .hero-desc { font-size: 15px; color: var(--gray); margin-bottom: 36px; font-weight: 300; line-height: 1.7; max-width: 480px; }
+
+  /* Phone Mockup */
+  .phone-mockup-hero {
+    position: relative; width: 300px; height: 620px;
+    border-radius: 44px; background: #1a1a1a;
+    border: 4px solid #333; padding: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,180,216,0.08), inset 0 0 4px rgba(255,255,255,0.05);
+    animation: phonefloat 4s ease-in-out infinite;
+  }
+  @keyframes phonefloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  .phone-mockup-hero::before {
+    content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 100px; height: 26px; background: #1a1a1a; border-radius: 0 0 16px 16px; z-index: 10;
+  }
+  .phone-mockup-hero::after {
+    content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 10px; background: #2a2a3a; border-radius: 50%; z-index: 11;
+  }
+  .phone-screen {
+    width: 100%; height: 100%; border-radius: 34px; overflow: hidden;
+    background: #000; position: relative;
+  }
+  .phone-screen video {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 34px;
+  }
+  .phone-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 350px; height: 350px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(230,57,70,0.12), rgba(0,180,216,0.08), transparent 70%);
+    pointer-events: none; filter: blur(40px); z-index: -1;
+  }
   .download-label { font-size: 12px; color: var(--gray); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
   .store-buttons { display: flex; gap: 14px; }
   .store-btn { display: flex; align-items: center; gap: 10px; background: #111; border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s; color: var(--white); }
@@ -65,8 +98,7 @@
   .store-btn svg { width: 22px; height: 22px; fill: var(--white); }
   .store-btn .store-label { font-size: 9px; color: var(--gray); display: block; }
   .store-btn .store-name { font-size: 14px; font-weight: 600; }
-  .hero-right { flex: 1; display: flex; justify-content: center; z-index: 2; }
-  .hero-image { width: 100%; max-width: 520px; height: auto; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.5)); }
+  .hero-right { flex: 1; display: flex; justify-content: center; align-items: center; z-index: 2; position: relative; }
 
   /* Social sidebar */
   .social-sidebar { position: fixed; left: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 50; }
@@ -245,6 +277,10 @@
     .hero-desc { margin: 0 auto 30px; }
     .store-buttons { justify-content: center; }
     .hero-image { max-width: 340px; }
+    .phone-mockup-hero { width: 240px; height: 500px; border-radius: 36px; }
+    .phone-screen { border-radius: 28px; }
+    .phone-screen video { border-radius: 28px; }
+    .phone-mockup-hero::before { width: 80px; height: 22px; }
     .hero-bg-video { width: 100%; opacity: 0.06; }
     .features-inner { flex-direction: column; text-align: center; }
     .features { padding: 60px 20px; }
@@ -309,9 +345,6 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <video class="hero-bg-video" autoplay muted loop playsinline>
-    <source src="taken-animation.mp4" type="video/mp4">
-  </video>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-badge"><span>🎧</span> Voice-First Blind Dating</div>
@@ -331,7 +364,14 @@
       </div>
     </div>
     <div class="hero-right">
-      <img src="hero-couple.png" alt="Blind dating couple" class="hero-image">
+      <div class="phone-glow"></div>
+      <div class="phone-mockup-hero">
+        <div class="phone-screen">
+          <video autoplay muted loop playsinline>
+            <source src="taken-animation.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
     </div>
   </div>
 </section>

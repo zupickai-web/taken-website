@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us - Taken</title>
 <style>
@@ -97,6 +99,34 @@ a { text-decoration:none; color:inherit; }
   .footer-links { flex-wrap:wrap; justify-content:center; gap:16px; }
 }
 
+
+  /* Mobile nav toggle */
+  .nav-links.show {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(15,15,26,0.98);
+    backdrop-filter: blur(14px);
+    padding: 20px 0;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 99;
+  }
+  .nav-links.show li {
+    list-style: none;
+  }
+  .nav-links.show a {
+    display: block;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .nav-links.show a:hover {
+    background: rgba(255,255,255,0.04);
+  }
 </style>
 </head>
 <body>
@@ -166,5 +196,13 @@ a { text-decoration:none; color:inherit; }
   </div>
   <div class="footer-copyright">Copyright Taken 2023. All rights reserved.</div>
 </footer>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('show');
+  });
+});
+</script>
 </body>
 </html>

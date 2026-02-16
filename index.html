@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taken - Blind Dating App</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700;1,900&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0f0f1a;
+    --bg-darker: #0a0a14;
+    --bg-card: #1a1a2e;
+    --bg-card-hover: #22223a;
+    --red: #e63946;
+    --red-glow: rgba(230,57,70,0.3);
+    --cyan: #00b4d8;
+    --cyan-glow: rgba(0,180,216,0.25);
+    --white: #ffffff;
+    --gray: #a0a0b0;
+    --gray-light: #d0d0e0;
+    --gradient-red: linear-gradient(135deg, #e63946, #c1121f);
+    --gradient-cyan: linear-gradient(135deg, #00b4d8, #0077b6);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; background: var(--bg-dark); color: var(--white); overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 60px; position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,15,26,0.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo img { height: 44px; width: auto; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-light); transition: color 0.3s; position: relative; }
+  .nav-links a.active, .nav-links a:hover { color: var(--cyan); }
+  .nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--cyan); border-radius: 2px; }
+  .get-app-btn { display: flex; align-items: center; gap: 10px; background: var(--gradient-red); padding: 10px 22px; border-radius: 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; border: none; color: white; }
+  .get-app-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--red-glow); }
+  .get-app-btn svg { width: 16px; height: 16px; fill: var(--white); }
+  .hamburger { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+
+  /* ===== HERO ===== */
+  .hero { padding: 120px 60px 80px; position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg-video { position: absolute; top: 0; right: 0; width: 50%; height: 100%; object-fit: cover; opacity: 0.12; pointer-events: none; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(230,57,70,0.07) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(0,180,216,0.05) 0%, transparent 50%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, var(--bg-dark), transparent); pointer-events: none; }
+  .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 50px; position: relative; z-index: 2; }
+  .hero-left { flex: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; color: var(--cyan); margin-bottom: 24px; }
+  .hero-badge span { font-size: 14px; }
+  .hero-left h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; line-height: 1.12; margin-bottom: 10px; }
+  .hero-left h1 .taken-text { color: var(--red); font-family: 'Dancing Script', cursive; font-size: 58px; }
+  .hero-tagline { font-size: 18px; color: var(--cyan); font-weight: 500; margin-bottom: 16px; }
+  .hero-desc { font-size: 15px; color: var(--gray); margin-bottom: 36px; font-weight: 300; line-height: 1.7; max-width: 480px; }
+  .download-label { font-size: 12px; color: var(--gray); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .store-buttons { display: flex; gap: 14px; }
+  .store-btn { display: flex; align-items: center; gap: 10px; background: #111; border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s; color: var(--white); }
+  .store-btn:hover { background: #1a1a1a; border-color: rgba(255,255,255,0.35); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .store-btn svg { width: 22px; height: 22px; fill: var(--white); }
+  .store-btn .store-label { font-size: 9px; color: var(--gray); display: block; }
+  .store-btn .store-name { font-size: 14px; font-weight: 600; }
+  .hero-right { flex: 1; display: flex; justify-content: center; z-index: 2; }
+  .hero-image { width: 100%; max-width: 520px; height: auto; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.5)); }
+
+  /* Social sidebar */
+  .social-sidebar { position: fixed; left: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 50; }
+  .social-sidebar a { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border-radius: 50%; color: var(--gray); transition: all 0.3s; }
+  .social-sidebar a:hover { background: var(--red); color: var(--white); transform: scale(1.1); }
+
+  /* ===== SECTION TITLES ===== */
+  .section-label { color: var(--cyan); font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.2; margin-bottom: 18px; }
+  .section-subtitle { font-size: 15px; color: var(--gray); line-height: 1.7; max-width: 600px; }
+
+  /* ===== FEATURES / PHONE SECTION ===== */
+  .features { padding: 100px 60px; position: relative; }
+  .features-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 20px; }
+  .features-image-wrap { flex: 1.1; display: flex; justify-content: center; }
+  .features-image { width: 100%; max-width: 550px; height: auto; object-fit: contain; }
+  .features-text { flex: 1; }
+  .features-text h2 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; line-height: 1.2; margin-bottom: 36px; font-style: italic; }
+  .features-text h2 .red { color: var(--red); }
+  .features-text h2 .gray-text { color: #8a8a9a; }
+  .feature-list { display: flex; flex-direction: column; gap: 22px; }
+  .feature-item { display: flex; align-items: center; gap: 16px; font-size: 20px; font-weight: 500; }
+  .feature-heart { width: 32px; height: 32px; flex-shrink: 0; }
+  .dot-pattern { position: absolute; right: 60px; bottom: 100px; display: grid; grid-template-columns: repeat(4, 8px); grid-template-rows: repeat(4, 8px); gap: 10px; opacity: 0.2; }
+  .dot-pattern span { width: 8px; height: 8px; background: var(--gray); border-radius: 50%; }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-it-works {
+    padding: 100px 60px;
+    background: var(--bg-darker);
+    position: relative;
+    overflow: hidden;
+  }
+  .how-it-works::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(230,57,70,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .how-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+  .how-inner .section-subtitle { margin: 0 auto 60px; }
+
+  .feature-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .feature-card {
+    background: linear-gradient(145deg, rgba(26,26,46,0.8), rgba(15,15,26,0.9));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 36px 28px;
+    text-align: left; transition: all 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gradient-red); opacity: 0; transition: opacity 0.4s;
+  }
+  .feature-card:hover { transform: translateY(-6px); border-color: rgba(230,57,70,0.2); background: var(--bg-card-hover); }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-card-icon {
+    width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; font-size: 28px;
+    background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.15);
+  }
+  .feature-card-icon.cyan-icon { background: rgba(0,180,216,0.1); border-color: rgba(0,180,216,0.15); }
+  .feature-card-icon.purple-icon { background: rgba(138,43,226,0.1); border-color: rgba(138,43,226,0.15); }
+  .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .feature-card p { font-size: 13.5px; color: var(--gray); line-height: 1.7; }
+
+  /* ===== VIBES AI HIGHLIGHT ===== */
+  .vibes-section {
+    padding: 100px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vibes-section::before {
+    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,180,216,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .vibes-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  .vibes-card {
+    background: linear-gradient(145deg, rgba(0,180,216,0.08), rgba(15,15,26,0.95));
+    border: 1px solid rgba(0,180,216,0.15); border-radius: 28px;
+    padding: 60px; position: relative; overflow: hidden;
+  }
+  .vibes-card::after {
+    content: ''; position: absolute; top: -50%; right: -30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,180,216,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .vibes-emoji { font-size: 56px; margin-bottom: 24px; display: block; }
+  .vibes-card h2 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; margin-bottom: 18px; }
+  .vibes-card h2 span { color: var(--cyan); }
+  .vibes-card p { font-size: 15px; color: var(--gray); line-height: 1.8; max-width: 600px; margin: 0 auto 10px; }
+  .vibes-features { display: flex; justify-content: center; gap: 40px; margin-top: 36px; flex-wrap: wrap; }
+  .vibes-feat { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .vibes-feat-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(0,180,216,0.12); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .vibes-feat span { font-size: 13px; font-weight: 600; color: var(--gray-light); }
+
+  /* ===== GALLERY ===== */
+  .gallery { padding: 40px 60px 80px; }
+  .gallery-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; gap: 28px; }
+  .gallery-card { width: 300px; height: 250px; border-radius: 20px; overflow: hidden; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; transition: transform 0.4s, box-shadow 0.4s; }
+  .gallery-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .gallery-card-hearts { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+
+  /* ===== BLOG ===== */
+  .blog { padding: 80px 60px; background: var(--bg-darker); }
+  .blog-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 50px; }
+  .blog-featured { flex: 1; }
+  .blog-label { color: var(--cyan); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .blog-featured h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 20px; }
+  .blog-featured p { font-size: 13.5px; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
+  .read-more { color: var(--red); font-size: 14px; font-weight: 600; cursor: pointer; transition: color 0.3s; }
+  .read-more:hover { color: #ff4d5a; }
+  .blog-list { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+  .blog-card { display: flex; gap: 16px; align-items: center; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; cursor: pointer; }
+  .blog-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+  .blog-card-img { width: 95px; height: 85px; border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
+  .blog-card-img-bg { width: 100%; height: 100%; border-radius: 10px; }
+  .blog-date { position: absolute; bottom: 5px; left: 5px; background: var(--red); color: white; padding: 3px 7px; border-radius: 5px; font-size: 8px; font-weight: 700; text-align: center; line-height: 1.2; }
+  .blog-date span { display: block; font-size: 12px; }
+  .blog-card-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+  .blog-card-meta { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray); }
+  .blog-card-meta svg { width: 14px; height: 14px; stroke: var(--gray); }
+
+  /* ===== DOWNLOAD CTA ===== */
+  .download-section { position: relative; padding: 80px 60px 0; overflow: hidden; }
+  .download-people { display: flex; justify-content: center; gap: 28px; position: relative; z-index: 2; }
+  .download-person { width: 260px; height: 340px; border-radius: 20px; overflow: hidden; }
+  .download-person img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .wave-divider { position: relative; margin-top: -80px; z-index: 1; }
+  .wave-divider svg { display: block; width: 100%; height: 140px; }
+  .download-cta { background: var(--bg-darker); text-align: center; padding: 20px 60px 80px; }
+  .download-cta h2 { font-size: 48px; margin-bottom: 14px; }
+  .download-cta h2 .dl-red { font-family: 'Dancing Script', cursive; color: var(--red); }
+  .download-cta h2 .dl-white { font-family: 'Playfair Display', serif; font-weight: 900; }
+  .download-cta p { font-size: 15px; color: var(--gray); margin-bottom: 30px; }
+  .download-cta .cta-tagline { font-size: 20px; color: var(--white); font-weight: 600; margin-bottom: 6px; }
+
+  /* ===== FOOTER ===== */
+  .footer { background: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 60px 24px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-links { display: flex; gap: 36px; }
+  .footer-links a { font-size: 14px; color: var(--gray-light); transition: color 0.3s; }
+  .footer-links a:hover { color: var(--cyan); }
+  .footer-copyright { text-align: center; font-size: 13px; color: var(--gray); padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); max-width: 1100px; margin: 0 auto; }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .hero-left h1 { animation: fadeInUp 0.8s ease-out; }
+  .hero-left .hero-badge { animation: fadeInUp 0.6s ease-out; }
+  .hero-left .hero-tagline { animation: fadeInUp 0.8s ease-out 0.1s both; }
+  .hero-left .hero-desc { animation: fadeInUp 0.8s ease-out 0.2s both; }
+  .hero-left .download-label { animation: fadeInUp 0.8s ease-out 0.3s both; }
+  .hero-left .store-buttons { animation: fadeInUp 0.8s ease-out 0.4s both; }
+  .hero-right { animation: fadeInUp 1s ease-out 0.3s both; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .feature-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .navbar { padding: 10px 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .hero { padding: 100px 20px 60px; min-height: auto; }
+    .hero-content { flex-direction: column; text-align: center; }
+    .hero-left h1 { font-size: 36px; }
+    .hero-left h1 .taken-text { font-size: 40px; }
+    .hero-desc { margin: 0 auto 30px; }
+    .store-buttons { justify-content: center; }
+    .hero-image { max-width: 340px; }
+    .hero-bg-video { width: 100%; opacity: 0.06; }
+    .features-inner { flex-direction: column; text-align: center; }
+    .features { padding: 60px 20px; }
+    .features-image { max-width: 100%; }
+    .features-text h2 { font-size: 32px; }
+    .feature-list { align-items: center; }
+    .how-it-works { padding: 60px 20px; }
+    .feature-cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .vibes-section { padding: 60px 20px; }
+    .vibes-card { padding: 36px 24px; }
+    .vibes-card h2 { font-size: 28px; }
+    .vibes-features { gap: 24px; }
+    .gallery { padding: 20px 20px 50px; }
+    .gallery-inner { flex-direction: column; align-items: center; }
+    .gallery-card { width: 100%; max-width: 340px; }
+    .blog { padding: 50px 20px; }
+    .blog-inner { flex-direction: column; }
+    .download-people { flex-wrap: wrap; justify-content: center; }
+    .download-person { width: 180px; height: 240px; }
+    .download-section { padding: 50px 20px 0; }
+    .download-cta { padding: 20px 20px 60px; }
+    .download-cta h2 { font-size: 34px; }
+    .footer { padding: 30px 20px 20px; }
+    .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .social-sidebar { display: none; }
+    .dot-pattern { display: none; }
+    .section-title { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="logo">
+    <img src="logo.png" alt="Taken Logo">
+    <span class="logo-text">Taken</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#features">Why Taken</a></li>
+    <li><a href="#how-it-works">Features</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+  <a href="#download" class="get-app-btn">
+    <span>Get App</span>
+    <svg viewBox="0 0 24 24"><path d="M3 20.5v-17A1.5 1.5 0 0 1 4.77 2l14.45 8.5a1 1 0 0 1 0 1.74L4.77 20.74A1.5 1.5 0 0 1 3 20.5z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+  </a>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
+</nav>
+
+<!-- Social Sidebar -->
+<div class="social-sidebar">
+  <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+  <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg></a>
+  <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+  <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75,15.02 15.5,11.75 9.75,8.48" fill="#0f0f1a"/></svg></a>
+  <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <video class="hero-bg-video" autoplay muted loop playsinline>
+    <source src="taken-animation.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge"><span>🎧</span> Voice-First Blind Dating</div>
+      <h1>Welcome to <span class="taken-text">Taken</span></h1>
+      <div class="hero-tagline">Meet people through voices and vibes, not photos. ✨</div>
+      <p class="hero-desc">Taken is a blind dating app where your pictures stay private until you match. Your voice is your intro — speak, listen, imagine, and swipe.</p>
+      <div class="download-label">Download for Android or iOS</div>
+      <div class="store-buttons">
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div><span class="store-label">Available on the</span><span class="store-name">App Store</span></div>
+        </a>
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm.892-.558l11.43 6.528L12.56 11.2 4.502 1.256zM16.8 8.648L19.3 10.07a1.084 1.084 0 0 1 0 1.86L16.8 13.352l-3.77-3.375 3.77-3.329zm-.942.536L12.56 12.8l3.37 3.416-11.43 6.528L15.858 9.184z"/></svg>
+          <div><span class="store-label">Available on the</span><span class="store-name">Google Play</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="hero-couple.png" alt="Blind dating couple" class="hero-image">
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES / PHONE -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="features-image-wrap reveal">
+      <img src="features-phone.png" alt="Taken app" class="features-image">
+    </div>
+    <div class="features-text reveal">
+      <h2><span class="red">Explore endless<br>Possibilities</span> <span class="gray-text">along<br>the way</span></h2>
+      <div class="feature-list">
+        <div class="feature-item">
+          <svg class="feature-heart" viewBox="0 0 32 32"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
+          <span>Personality</span>
+        </div>
+        <div class="feature-item">
+          <svg class="feature-heart" viewBox="0 0 32 32"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
+          <span>People</span>
+        </div>
+        <div class="feature-item">
+          <svg class="feature-heart" viewBox="0 0 32 32"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
+          <span>Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dot-pattern"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</section>
+
+<!-- HOW IT WORKS - 6 FEATURE CARDS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="how-inner">
+    <div class="section-label">Why Taken?</div>
+    <div class="section-title">Smarter. Safer. Kinder. More Authentic.</div>
+    <p class="section-subtitle">Blind dating with voice first, vibes first, photos only for a match. Here's what makes Taken different.</p>
+
+    <div class="feature-cards">
+      <!-- Card 1 -->
+      <div class="feature-card reveal">
+        <div class="feature-card-icon">🔒</div>
+        <h3>Blind Dating, Only Smarter</h3>
+        <p>Photos are not public — they unlock only after you both match, making dating safer, more genuine, and pressure-free. Content is moderated, and verified positive profiles get priority.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="feature-card reveal">
+        <div class="feature-card-icon cyan-icon">🎙️</div>
+        <h3>Voice-First Dating</h3>
+        <p>Your voice carries your personality. Create your voice intro, explore others through audio first, and let true chemistry form before you ever see a photo. Listen, imagine, and swipe.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="feature-card reveal">
+        <div class="feature-card-icon purple-icon">🤖</div>
+        <h3>Vibes AI — Mutual Recommendations</h3>
+        <p>Our Vibes AI listens to your energy and sends personalised, mutually guaranteed recommendations every day. Meet people who match your vibe and energy, not just your looks.</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="feature-card reveal">
+        <div class="feature-card-icon">🎣</div>
+        <h3>A Match is a Catch</h3>
+        <p>When both sides connect, it's a Catch. Upgrade for unlimited Catches, view who showed interest in you, change location to explore, and use Booms to stand out.</p>
+      </div>
+      <!-- Card 5 -->
+      <div class="feature-card reveal">
+        <div class="feature-card-icon cyan-icon">🔊</div>
+        <h3>Boom — Your Audible Love Letter</h3>
+        <p>Send a Boom: a private, unmoderated voice message where you can pour your heart out. Raw, real, and only between you and your interest.</p>
+      </div>
+      <!-- Card 6 -->
+      <div class="feature-card reveal">
+        <div class="feature-card-icon purple-icon">🛡️</div>
+        <h3>Safe & Respectful</h3>
+        <p>Smarter moderation, safer interactions, and a dating world where what you say matters more than how you look. Inappropriate behaviour means suspension.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIBES AI HIGHLIGHT -->
+<section class="vibes-section">
+  <div class="vibes-inner">
+    <div class="vibes-card reveal">
+      <span class="vibes-emoji">⚡</span>
+      <h2>Our <span>Vibes AI</span> Finds Your Match</h2>
+      <p>Daily mutually guaranteed recommendations powered by AI. Photos only unlock for a match — making every connection real and intentional.</p>
+      <div class="vibes-features">
+        <div class="vibes-feat">
+          <div class="vibes-feat-icon">🎧</div>
+          <span>Voice First</span>
+        </div>
+        <div class="vibes-feat">
+          <div class="vibes-feat-icon">🤝</div>
+          <span>Mutual Matches</span>
+        </div>
+        <div class="vibes-feat">
+          <div class="vibes-feat-icon">🔒</div>
+          <span>Photos Private</span>
+        </div>
+        <div class="vibes-feat">
+          <div class="vibes-feat-icon">🌍</div>
+          <span>Global Reach</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-card reveal"><div style="width:100%;height:100%;background:linear-gradient(135deg,#2a1f3d,#1a1a2e);display:flex;align-items:center;justify-content:center;font-size:72px;">🧔</div></div>
+    <div class="gallery-card gallery-card-hearts reveal">
+      <svg width="65" height="65" viewBox="0 0 32 32" style="filter:drop-shadow(0 4px 8px rgba(0,0,0,0.15))"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
+      <svg width="65" height="65" viewBox="0 0 32 32" style="filter:drop-shadow(0 4px 8px rgba(0,0,0,0.15));margin-left:-4px"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
+    </div>
+    <div class="gallery-card reveal"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2a1f,#1a1a2e);display:flex;align-items:center;justify-content:center;font-size:72px;">👫</div></div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="blog-inner">
+    <div class="blog-featured reveal">
+      <div class="blog-label">Read Blogs</div>
+      <h3>Beyond First Impressions: Discovering Genuine Connections</h3>
+      <p>In a world where initial judgments often dictate our paths, it's time to transcend the limitations of first impressions and seek genuine connections. Beyond First Impressions opens up a realm where authentic bonds flourish, allowing us to see beyond the surface and embrace the true essence of human connection.</p>
+      <a href="#" class="read-more">Read more...</a>
+    </div>
+    <div class="blog-list">
+      <div class="blog-card reveal">
+        <div class="blog-card-img">
+          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,#1a237e,#4a148c);"></div>
+          <div class="blog-date"><span>09</span>JULY</div>
+        </div>
+        <div class="blog-card-content">
+          <h4>Connecting Hearts: A Unique Approach</h4>
+          <div class="blog-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>3 minutes read</div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-card-img">
+          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,#b71c1c,#e65100);"></div>
+          <div class="blog-date"><span>09</span>JULY</div>
+        </div>
+        <div class="blog-card-content">
+          <h4>Opening New Doors: Exploring Boundless Possibilities</h4>
+          <div class="blog-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>5 minutes read</div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-card-img">
+          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,#004d40,#00897b);"></div>
+          <div class="blog-date"><span>09</span>JULY</div>
+        </div>
+        <div class="blog-card-content">
+          <h4>The Mystery of Romance: Connections Beyond Appearances</h4>
+          <div class="blog-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>5 minutes read</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD SECTION -->
+<section class="download-section" id="download">
+  <div class="download-people">
+    <div class="download-person reveal"><img src="blindfold-man.png" alt="Blindfolded person"></div>
+    <div class="download-person reveal"><img src="hero-couple.png" alt="Couple" style="object-position:center 30%;"></div>
+    <div class="download-person reveal"><img src="blindfold-man.png" alt="Blindfolded person" style="transform:scaleX(-1);filter:brightness(0.85) hue-rotate(10deg);"></div>
+  </div>
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 140" fill="none" preserveAspectRatio="none">
+      <path d="M0 80C180 30 360 120 540 80C720 40 900 120 1080 80C1260 40 1380 90 1440 70V140H0V80Z" fill="#0a0a14"/>
+      <path d="M0 95C200 55 400 130 600 85C800 35 1000 115 1200 75C1320 55 1400 85 1440 90V140H0V95Z" fill="#0a0a14" opacity="0.5"/>
+    </svg>
+  </div>
+</section>
+
+<section class="download-cta">
+  <h2><span class="dl-red">Download</span> <span class="dl-white">Taken</span></h2>
+  <p class="cta-tagline">It's time to be Taken, today. 💫</p>
+  <p>Ready to get Taken? Join the global movement of blind, voice-led dating and let Vibes AI find someone who truly matches your energy.</p>
+  <div class="store-buttons" style="justify-content:center;">
+    <a href="#" class="store-btn" style="padding:14px 28px;border-radius:12px;">
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm.892-.558l11.43 6.528L12.56 11.2 4.502 1.256zM16.8 8.648L19.3 10.07a1.084 1.084 0 0 1 0 1.86L16.8 13.352l-3.77-3.375 3.77-3.329zm-.942.536L12.56 12.8l3.37 3.416-11.43 6.528L15.858 9.184z"/></svg>
+      <div><span class="store-label">Available on the</span><span class="store-name">Play Store</span></div>
+    </a>
+    <a href="#" class="store-btn" style="padding:14px 28px;border-radius:12px;">
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div><span class="store-label">Available on the</span><span class="store-name">App Store</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Taken Logo">
+      <span class="logo-text">Taken</span>
+    </a>
+    <div class="footer-links">
+      <a href="#">Contact us</a>
+      <a href="#">FAQ's</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-copyright">Copyright Taken 2023. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => { entry.target.classList.add('visible'); }, i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset + 200;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      const id = sec.getAttribute('id');
+      const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+      if (link) {
+        if (scrollY >= top && scrollY < top + height) {
+          document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>

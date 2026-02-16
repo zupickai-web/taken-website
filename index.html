@@ -247,46 +247,132 @@
   .vibes-feat-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(0,180,216,0.12); display: flex; align-items: center; justify-content: center; font-size: 24px; }
   .vibes-feat span { font-size: 13px; font-weight: 600; color: var(--gray-light); }
 
-  /* ===== GALLERY ===== */
-  .gallery { padding: 40px 60px 80px; }
-  .gallery-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; gap: 28px; }
-  .gallery-card { width: 300px; height: 250px; border-radius: 20px; overflow: hidden; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; transition: transform 0.4s, box-shadow 0.4s; }
-  .gallery-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-  .gallery-card-hearts { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+  /* ===== HOW TAKEN WORKS - 3 STEPS ===== */
+  .how-steps {
+    padding: 100px 60px; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+  }
+  .how-steps-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+  .how-steps-inner .section-subtitle { margin: 0 auto 70px; }
+  .steps-grid { display: flex; gap: 40px; justify-content: center; align-items: stretch; position: relative; }
+  .steps-grid::before {
+    content: ''; position: absolute; top: 72px; left: 15%; right: 15%; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,180,216,0.3), rgba(230,57,70,0.3), transparent);
+    z-index: 0;
+  }
+  .step-card {
+    flex: 1; max-width: 320px; text-align: center; position: relative; z-index: 1;
+    padding: 0 10px;
+  }
+  .step-icon-wrap {
+    width: 144px; height: 144px; border-radius: 50%; margin: 0 auto 28px;
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .step-icon-ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.06);
+    transition: all 0.4s;
+  }
+  .step-card:hover .step-icon-ring {
+    border-color: rgba(230,57,70,0.3);
+    box-shadow: 0 0 30px rgba(230,57,70,0.1);
+  }
+  .step-icon-inner {
+    width: 110px; height: 110px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    background: linear-gradient(145deg, rgba(26,26,46,0.9), rgba(15,15,26,0.95));
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transition: all 0.4s;
+  }
+  .step-card:hover .step-icon-inner {
+    transform: scale(1.08);
+    box-shadow: 0 14px 50px rgba(0,0,0,0.5);
+  }
+  .step-number {
+    position: absolute; top: -4px; right: 10px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--gradient-red); color: white;
+    font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px var(--red-glow);
+  }
+  .step-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+  .step-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+  .step-arrow {
+    position: absolute; top: 68px; right: -28px; font-size: 22px; color: rgba(255,255,255,0.15); z-index: 2;
+  }
 
-  /* ===== BLOG ===== */
-  .blog { padding: 80px 60px; background: var(--bg-darker); }
-  .blog-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 50px; }
-  .blog-featured { flex: 1; }
-  .blog-label { color: var(--cyan); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-  .blog-featured h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 20px; }
-  .blog-featured p { font-size: 13.5px; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
-  .read-more { color: var(--red); font-size: 14px; font-weight: 600; cursor: pointer; transition: color 0.3s; }
-  .read-more:hover { color: #ff4d5a; }
-  .blog-list { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-  .blog-card { display: flex; gap: 16px; align-items: center; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; cursor: pointer; }
-  .blog-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
-  .blog-card-img { width: 95px; height: 85px; border-radius: 10px; flex-shrink: 0; position: relative; overflow: hidden; }
-  .blog-card-img-bg { width: 100%; height: 100%; border-radius: 10px; }
-  .blog-date { position: absolute; bottom: 5px; left: 5px; background: var(--red); color: white; padding: 3px 7px; border-radius: 5px; font-size: 8px; font-weight: 700; text-align: center; line-height: 1.2; }
-  .blog-date span { display: block; font-size: 12px; }
-  .blog-card-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
-  .blog-card-meta { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray); }
-  .blog-card-meta svg { width: 14px; height: 14px; stroke: var(--gray); }
-
-  /* ===== DOWNLOAD CTA ===== */
-  .download-section { position: relative; padding: 80px 60px 0; overflow: hidden; }
-  .download-people { display: flex; justify-content: center; gap: 28px; position: relative; z-index: 2; }
-  .download-person { width: 260px; height: 340px; border-radius: 20px; overflow: hidden; }
-  .download-person img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .wave-divider { position: relative; margin-top: -80px; z-index: 1; }
-  .wave-divider svg { display: block; width: 100%; height: 140px; }
-  .download-cta { background: var(--bg-darker); text-align: center; padding: 20px 60px 80px; }
-  .download-cta h2 { font-size: 48px; margin-bottom: 14px; }
-  .download-cta h2 .dl-red { font-family: 'Dancing Script', cursive; color: var(--red); }
-  .download-cta h2 .dl-white { font-family: 'Playfair Display', serif; font-weight: 900; }
-  .download-cta p { font-size: 15px; color: var(--gray); margin-bottom: 30px; }
-  .download-cta .cta-tagline { font-size: 20px; color: var(--white); font-weight: 600; margin-bottom: 6px; }
+  /* ===== FULL WIDTH CTA BANNER ===== */
+  .cta-banner {
+    position: relative; padding: 100px 60px; overflow: hidden;
+    background: var(--bg-darker);
+  }
+  .cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(230,57,70,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(0,180,216,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cta-banner::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(230,57,70,0.3), rgba(0,180,216,0.3), transparent);
+  }
+  .cta-inner {
+    max-width: 1100px; margin: 0 auto; display: flex; align-items: center;
+    gap: 60px; position: relative; z-index: 2;
+  }
+  .cta-text { flex: 1.2; }
+  .cta-text h2 {
+    font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 900;
+    line-height: 1.15; margin-bottom: 18px;
+  }
+  .cta-text h2 .dl-red { font-family: 'Dancing Script', cursive; color: var(--red); }
+  .cta-text .cta-tagline {
+    font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--white);
+  }
+  .cta-text .cta-desc { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 36px; max-width: 500px; }
+  .cta-text .store-buttons { justify-content: flex-start; }
+  .cta-text .store-btn { padding: 14px 28px; border-radius: 12px; }
+  .cta-phone-wrap { flex: 0.8; display: flex; justify-content: center; position: relative; }
+  .cta-phone {
+    width: 240px; height: 490px; border-radius: 36px; background: #1a1a1a;
+    border: 3px solid #333; padding: 10px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 80px rgba(230,57,70,0.08);
+    animation: phonefloat 4s ease-in-out infinite;
+  }
+  .cta-phone::before {
+    content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px; background: #1a1a1a; border-radius: 0 0 12px 12px; z-index: 10;
+  }
+  .cta-phone .phone-screen { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; background: #000; }
+  .cta-phone .phone-screen video { width: 100%; height: 100%; object-fit: cover; border-radius: 28px; }
+  .cta-phone-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(230,57,70,0.1), rgba(0,180,216,0.06), transparent 70%);
+    pointer-events: none; filter: blur(50px);
+  }
+  /* Floating hearts animation */
+  .floating-hearts { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .floating-heart {
+    position: absolute; font-size: 20px; opacity: 0;
+    animation: floatheart 6s ease-in-out infinite;
+  }
+  .floating-heart:nth-child(1) { left: 5%; animation-delay: 0s; }
+  .floating-heart:nth-child(2) { left: 20%; animation-delay: 1.5s; font-size: 16px; }
+  .floating-heart:nth-child(3) { left: 75%; animation-delay: 3s; }
+  .floating-heart:nth-child(4) { left: 90%; animation-delay: 0.8s; font-size: 14px; }
+  .floating-heart:nth-child(5) { left: 50%; animation-delay: 2.2s; font-size: 18px; }
+  .floating-heart:nth-child(6) { left: 35%; animation-delay: 4s; font-size: 12px; }
+  @keyframes floatheart {
+    0% { bottom: -20px; opacity: 0; transform: translateX(0) rotate(0deg); }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.3; }
+    100% { bottom: 110%; opacity: 0; transform: translateX(40px) rotate(30deg); }
+  }
 
   /* ===== FOOTER ===== */
   .footer { background: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 60px 24px; }
@@ -347,13 +433,17 @@
     .gallery { padding: 20px 20px 50px; }
     .gallery-inner { flex-direction: column; align-items: center; }
     .gallery-card { width: 100%; max-width: 340px; }
-    .blog { padding: 50px 20px; }
-    .blog-inner { flex-direction: column; }
-    .download-people { flex-wrap: wrap; justify-content: center; }
-    .download-person { width: 180px; height: 240px; }
-    .download-section { padding: 50px 20px 0; }
-    .download-cta { padding: 20px 20px 60px; }
-    .download-cta h2 { font-size: 34px; }
+    .how-steps { padding: 60px 20px; }
+    .steps-grid { flex-direction: column; align-items: center; gap: 50px; }
+    .steps-grid::before { display: none; }
+    .step-arrow { display: none; }
+    .step-card { max-width: 100%; }
+    .cta-banner { padding: 60px 20px; }
+    .cta-inner { flex-direction: column; text-align: center; }
+    .cta-text .store-buttons { justify-content: center; }
+    .cta-text .cta-desc { margin: 0 auto 30px; }
+    .cta-phone { width: 200px; height: 410px; }
+    .cta-text h2 { font-size: 36px; }
     .footer { padding: 30px 20px 20px; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
@@ -374,7 +464,7 @@
     <li><a href="#hero" class="active">Home</a></li>
     <li><a href="#features">Why Taken</a></li>
     <li><a href="#how-it-works">Features</a></li>
-    <li><a href="#blog">Blog</a></li>
+    <li><a href="#download">Download</a></li>
   </ul>
   <a href="#download" class="get-app-btn">
     <span>Get App</span>
@@ -396,11 +486,11 @@
       <p class="hero-desc">Taken is a blind dating app where your pictures stay private until you match. Your voice is your intro — speak, listen, imagine, and swipe.</p>
       <div class="download-label">Download for Android or iOS</div>
       <div class="store-buttons">
-        <a href="#" class="store-btn">
+        <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="store-btn">
           <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <div><span class="store-label">Available on the</span><span class="store-name">App Store</span></div>
         </a>
-        <a href="#" class="store-btn">
+        <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="store-btn">
           <svg viewBox="0 0 24 24" fill="white"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm.892-.558l11.43 6.528L12.56 11.2 4.502 1.256zM16.8 8.648L19.3 10.07a1.084 1.084 0 0 1 0 1.86L16.8 13.352l-3.77-3.375 3.77-3.329zm-.942.536L12.56 12.8l3.37 3.416-11.43 6.528L15.858 9.184z"/></svg>
           <div><span class="store-label">Available on the</span><span class="store-name">Google Play</span></div>
         </a>
@@ -544,90 +634,85 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery">
-  <div class="gallery-inner">
-    <div class="gallery-card reveal"><div style="width:100%;height:100%;background:linear-gradient(135deg,#2a1f3d,#1a1a2e);display:flex;align-items:center;justify-content:center;font-size:72px;">🧔</div></div>
-    <div class="gallery-card gallery-card-hearts reveal">
-      <svg width="65" height="65" viewBox="0 0 32 32" style="filter:drop-shadow(0 4px 8px rgba(0,0,0,0.15))"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
-      <svg width="65" height="65" viewBox="0 0 32 32" style="filter:drop-shadow(0 4px 8px rgba(0,0,0,0.15));margin-left:-4px"><path d="M16 28 C16 28, 4 20, 4 13 C4 9, 7 6, 10 6 C13 6, 15 8, 16 11 C17 8, 19 6, 22 6 C25 6, 28 9, 28 13 C28 20, 16 28, 16 28Z" fill="#e63946"/></svg>
-    </div>
-    <div class="gallery-card reveal"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2a1f,#1a1a2e);display:flex;align-items:center;justify-content:center;font-size:72px;">👫</div></div>
-  </div>
-</section>
+<!-- HOW TAKEN WORKS - 3 STEPS -->
+<section class="how-steps" id="how-steps">
+  <div class="how-steps-inner">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">Three Steps to Your Next Connection</div>
+    <p class="section-subtitle">No swiping on photos. No superficial judgments. Just real human connection in three simple steps.</p>
 
-<!-- BLOG -->
-<section class="blog" id="blog">
-  <div class="blog-inner">
-    <div class="blog-featured reveal">
-      <div class="blog-label">Read Blogs</div>
-      <h3>Beyond First Impressions: Discovering Genuine Connections</h3>
-      <p>In a world where initial judgments often dictate our paths, it's time to transcend the limitations of first impressions and seek genuine connections. Beyond First Impressions opens up a realm where authentic bonds flourish, allowing us to see beyond the surface and embrace the true essence of human connection.</p>
-      <a href="#" class="read-more">Read more...</a>
-    </div>
-    <div class="blog-list">
-      <div class="blog-card reveal">
-        <div class="blog-card-img">
-          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,#1a237e,#4a148c);"></div>
-          <div class="blog-date"><span>09</span>JULY</div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-icon-wrap">
+          <div class="step-icon-ring"></div>
+          <div class="step-icon-inner">🎙️</div>
+          <div class="step-number">1</div>
         </div>
-        <div class="blog-card-content">
-          <h4>Connecting Hearts: A Unique Approach</h4>
-          <div class="blog-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>3 minutes read</div>
-        </div>
+        <h3>Speak Your Truth</h3>
+        <p>Create a voice intro that captures who you really are. Your personality shines through your voice — no filters, no pretending, just you.</p>
+        <div class="step-arrow">→</div>
       </div>
-      <div class="blog-card reveal">
-        <div class="blog-card-img">
-          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,#b71c1c,#e65100);"></div>
-          <div class="blog-date"><span>09</span>JULY</div>
+
+      <div class="step-card reveal">
+        <div class="step-icon-wrap">
+          <div class="step-icon-ring"></div>
+          <div class="step-icon-inner">💘</div>
+          <div class="step-number">2</div>
         </div>
-        <div class="blog-card-content">
-          <h4>Opening New Doors: Exploring Boundless Possibilities</h4>
-          <div class="blog-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>5 minutes read</div>
-        </div>
+        <h3>Match on Vibes</h3>
+        <p>Listen to voice intros, feel the energy, and swipe. Vibes AI also sends you daily mutual recommendations based on real compatibility.</p>
+        <div class="step-arrow">→</div>
       </div>
-      <div class="blog-card reveal">
-        <div class="blog-card-img">
-          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,#004d40,#00897b);"></div>
-          <div class="blog-date"><span>09</span>JULY</div>
+
+      <div class="step-card reveal">
+        <div class="step-icon-wrap">
+          <div class="step-icon-ring"></div>
+          <div class="step-icon-inner">📸</div>
+          <div class="step-number">3</div>
         </div>
-        <div class="blog-card-content">
-          <h4>The Mystery of Romance: Connections Beyond Appearances</h4>
-          <div class="blog-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>5 minutes read</div>
-        </div>
+        <h3>Reveal & Connect</h3>
+        <p>When you both match — it's a Catch! Photos unlock, and the real conversation begins. Send a Boom voice message to break the ice.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DOWNLOAD SECTION -->
-<section class="download-section" id="download">
-  <div class="download-people">
-    <div class="download-person reveal"><img src="blindfold-man.png" alt="Blindfolded person"></div>
-    <div class="download-person reveal"><img src="hero-couple.png" alt="Couple" style="object-position:center 30%;"></div>
-    <div class="download-person reveal"><img src="blindfold-man.png" alt="Blindfolded person" style="transform:scaleX(-1);filter:brightness(0.85) hue-rotate(10deg);"></div>
+<!-- FULL-WIDTH CTA BANNER -->
+<section class="cta-banner" id="download">
+  <div class="floating-hearts">
+    <span class="floating-heart">❤️</span>
+    <span class="floating-heart">💕</span>
+    <span class="floating-heart">💖</span>
+    <span class="floating-heart">❤️</span>
+    <span class="floating-heart">💘</span>
+    <span class="floating-heart">💗</span>
   </div>
-  <div class="wave-divider">
-    <svg viewBox="0 0 1440 140" fill="none" preserveAspectRatio="none">
-      <path d="M0 80C180 30 360 120 540 80C720 40 900 120 1080 80C1260 40 1380 90 1440 70V140H0V80Z" fill="#0a0a14"/>
-      <path d="M0 95C200 55 400 130 600 85C800 35 1000 115 1200 75C1320 55 1400 85 1440 90V140H0V95Z" fill="#0a0a14" opacity="0.5"/>
-    </svg>
-  </div>
-</section>
-
-<section class="download-cta">
-  <h2><span class="dl-red">Download</span> <span class="dl-white">Taken</span></h2>
-  <p class="cta-tagline">It's time to be Taken, today. 💫</p>
-  <p>Ready to get Taken? Join the global movement of blind, voice-led dating and let Vibes AI find someone who truly matches your energy.</p>
-  <div class="store-buttons" style="justify-content:center;">
-    <a href="#" class="store-btn" style="padding:14px 28px;border-radius:12px;">
-      <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm.892-.558l11.43 6.528L12.56 11.2 4.502 1.256zM16.8 8.648L19.3 10.07a1.084 1.084 0 0 1 0 1.86L16.8 13.352l-3.77-3.375 3.77-3.329zm-.942.536L12.56 12.8l3.37 3.416-11.43 6.528L15.858 9.184z"/></svg>
-      <div><span class="store-label">Available on the</span><span class="store-name">Play Store</span></div>
-    </a>
-    <a href="#" class="store-btn" style="padding:14px 28px;border-radius:12px;">
-      <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      <div><span class="store-label">Available on the</span><span class="store-name">App Store</span></div>
-    </a>
+  <div class="cta-inner">
+    <div class="cta-text reveal">
+      <h2><span class="dl-red">Download</span> Taken</h2>
+      <p class="cta-tagline">It's time to be Taken, today. 💫</p>
+      <p class="cta-desc">Join the global movement of blind, voice-led dating. Let Vibes AI find someone who truly matches your energy. Ready to get Taken?</p>
+      <div class="store-buttons">
+        <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zm.892-.558l11.43 6.528L12.56 11.2 4.502 1.256zM16.8 8.648L19.3 10.07a1.084 1.084 0 0 1 0 1.86L16.8 13.352l-3.77-3.375 3.77-3.329zm-.942.536L12.56 12.8l3.37 3.416-11.43 6.528L15.858 9.184z"/></svg>
+          <div><span class="store-label">Available on the</span><span class="store-name">Play Store</span></div>
+        </a>
+        <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div><span class="store-label">Available on the</span><span class="store-name">App Store</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="cta-phone-wrap reveal">
+      <div class="cta-phone-glow"></div>
+      <div class="cta-phone">
+        <div class="phone-screen">
+          <video autoplay muted loop playsinline>
+            <source src="taken-animation.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -639,10 +724,10 @@
       <span class="logo-text">Taken</span>
     </a>
     <div class="footer-links">
-      <a href="#">Contact us</a>
-      <a href="#">FAQ's</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Privacy Policy</a>
+      <a href="contact.html">Contact us</a>
+      <a href="faq.html">FAQ's</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
     </div>
   </div>
   <div class="footer-copyright">Copyright Taken 2023. All rights reserved.</div>

@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy - Taken</title>
 <style>
-/* Taken - Shared Subpage Styles */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap');
 
 :root { --bg-dark:#0f0f1a; --bg-darker:#0a0a14; --bg-card:#1a1a2e; --red:#e63946; --cyan:#00b4d8; --white:#fff; --gray:#a0a0b0; --gray-light:#d0d0e0; }
@@ -16,7 +15,6 @@ html { scroll-behavior:smooth; }
 body { font-family:'Poppins',sans-serif; background:var(--bg-dark); color:var(--white); overflow-x:hidden; }
 a { text-decoration:none; color:inherit; }
 
-/* Navbar */
 .navbar { display:flex; align-items:center; justify-content:space-between; padding:10px 60px; position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(15,15,26,0.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.05); }
 .logo { display:flex; align-items:center; gap:10px; }
 .logo img { height:44px; width:auto; }
@@ -29,14 +27,12 @@ a { text-decoration:none; color:inherit; }
 .get-app-btn svg { width:16px; height:16px; fill:var(--white); }
 .hamburger { display:none; background:none; border:none; color:white; font-size:24px; cursor:pointer; }
 
-/* Page Hero */
 .page-hero { padding:140px 60px 60px; text-align:center; position:relative; }
 .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 30%,rgba(230,57,70,0.06) 0%,transparent 60%); pointer-events:none; }
 .page-hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:900; margin-bottom:12px; position:relative; }
 .page-hero h1 span { color:var(--red); }
 .page-hero p { color:var(--gray); font-size:15px; position:relative; }
 
-/* Content */
 .content-section { max-width:860px; margin:0 auto; padding:40px 60px 100px; }
 .content-section h2 { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; margin:40px 0 16px; color:var(--cyan); }
 .content-section h2:first-child { margin-top:0; }
@@ -51,33 +47,17 @@ a { text-decoration:none; color:inherit; }
 .content-section a { color:var(--cyan); transition:color 0.3s; }
 .content-section a:hover { color:var(--red); }
 .content-section strong { color:var(--gray-light); }
+.content-section .sub-list { margin-top:8px; margin-bottom:8px; }
+.content-section .sub-list li { padding-left:16px; margin-bottom:4px; }
+.content-section .sub-list li::before { content:'–'; color:var(--cyan); }
 
-/* FAQ */
-.faq-list { display:flex; flex-direction:column; gap:16px; }
-.faq-item { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:16px; overflow:hidden; transition:all 0.3s; }
-.faq-item:hover { border-color:rgba(230,57,70,0.15); }
-.faq-question { display:flex; align-items:center; justify-content:space-between; padding:22px 28px; cursor:pointer; gap:16px; }
-.faq-question h3 { font-size:16px; font-weight:600; color:var(--white); margin:0; line-height:1.4; flex:1; }
-.faq-question .faq-num { font-size:14px; font-weight:800; color:var(--red); min-width:28px; }
-.faq-toggle { width:28px; height:28px; border-radius:50%; background:rgba(230,57,70,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.3s; color:var(--red); font-size:18px; font-weight:300; }
-.faq-item.open .faq-toggle { background:var(--red); color:white; transform:rotate(45deg); }
-.faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s ease; }
-.faq-item.open .faq-answer { max-height:300px; }
-.faq-answer p { padding:0 28px 22px; font-size:14px; color:var(--gray); line-height:1.8; margin:0; }
+.delete-box { background:rgba(230,57,70,0.06); border:1px solid rgba(230,57,70,0.15); border-radius:16px; padding:28px 28px 16px; margin:20px 0 30px; }
+.delete-box h3 { margin-top:0; color:var(--red); font-size:18px; }
 
-/* Contact */
-.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:40px; }
-.contact-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:40px; text-align:center; transition:all 0.3s; }
-.contact-card:hover { border-color:rgba(230,57,70,0.2); transform:translateY(-4px); }
-.contact-icon { width:64px; height:64px; border-radius:16px; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; font-size:30px; }
-.contact-icon.red-bg { background:rgba(230,57,70,0.1); }
-.contact-icon.cyan-bg { background:rgba(0,180,216,0.1); }
-.contact-card h3 { font-size:18px; font-weight:700; margin-bottom:8px; }
-.contact-card p { font-size:14px; color:var(--gray); line-height:1.6; }
-.contact-card a { color:var(--cyan); font-weight:600; }
-.contact-card a:hover { color:var(--red); }
+.notice-box { background:rgba(0,180,216,0.05); border:1px solid rgba(0,180,216,0.15); border-radius:16px; padding:24px 28px; margin:16px 0; }
+.notice-box p { margin-bottom:8px; }
+.notice-box p:last-child { margin-bottom:0; }
 
-/* Footer */
 .footer { background:var(--bg-darker); border-top:1px solid rgba(255,255,255,0.06); padding:40px 60px 24px; }
 .footer-inner { max-width:1100px; margin:0 auto 24px; display:flex; align-items:center; justify-content:space-between; }
 .footer-links { display:flex; gap:36px; }
@@ -85,7 +65,15 @@ a { text-decoration:none; color:inherit; }
 .footer-links a:hover { color:var(--cyan); }
 .footer-copyright { text-align:center; font-size:13px; color:var(--gray); padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); max-width:1100px; margin:0 auto; }
 
-/* Responsive */
+.nav-links.show {
+  display: flex !important; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0;
+  background: rgba(15,15,26,0.98); backdrop-filter: blur(14px); padding: 20px 0; gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 99;
+}
+.nav-links.show li { list-style: none; }
+.nav-links.show a { display: block; padding: 14px 30px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.nav-links.show a:hover { background: rgba(255,255,255,0.04); }
+
 @media (max-width:900px) {
   .navbar { padding:10px 20px; }
   .nav-links { display:none; }
@@ -93,43 +81,14 @@ a { text-decoration:none; color:inherit; }
   .page-hero { padding:110px 20px 40px; }
   .page-hero h1 { font-size:32px; }
   .content-section { padding:30px 20px 60px; }
-  .contact-grid { grid-template-columns:1fr; }
   .footer { padding:30px 20px 20px; }
   .footer-inner { flex-direction:column; gap:20px; text-align:center; }
   .footer-links { flex-wrap:wrap; justify-content:center; gap:16px; }
 }
-
-
-  /* Mobile nav toggle */
-  .nav-links.show {
-    display: flex !important;
-    flex-direction: column;
-    position: fixed;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: rgba(15,15,26,0.98);
-    backdrop-filter: blur(14px);
-    padding: 20px 0;
-    gap: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    z-index: 99;
-  }
-  .nav-links.show li {
-    list-style: none;
-  }
-  .nav-links.show a {
-    display: block;
-    padding: 14px 30px;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .nav-links.show a:hover {
-    background: rgba(255,255,255,0.04);
-  }
 </style>
 </head>
 <body>
+
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="logo.png" alt="Taken Logo"><span class="logo-text">Taken</span></a>
   <ul class="nav-links">
@@ -140,95 +99,207 @@ a { text-decoration:none; color:inherit; }
   <a href="https://0ul6x.app.link/0S1OXcBIJIb" target="_blank" class="get-app-btn"><span>Get App</span><svg viewBox="0 0 24 24"><path d="M3 20.5v-17A1.5 1.5 0 0 1 4.77 2l14.45 8.5a1 1 0 0 1 0 1.74L4.77 20.74A1.5 1.5 0 0 1 3 20.5z"/></svg></a>
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
 </nav>
-<section class="page-hero"><h1>Privacy <span>Policy</span></h1><p>Your privacy is our top priority.</p></section>
+
+<section class="page-hero">
+  <h1>Privacy <span>Policy</span></h1>
+  <p>Your privacy is our highest priority.</p>
+</section>
+
 <div class="content-section">
-<h2>Introduction</h2>
-<p>We recognise the importance of maintaining the privacy of the information belonging to you (the "User"). This Policy sets out details of how we treat user information we collect on the "App". The App is owned and operated by Taken App Private Limited, a limited liability company incorporated under the Indian Companies Act, 2013 and having its registered office at 5th Cross, 30th Main, HSR Layout, 1st Sector, Bangalore, Karnataka 560 102 (the "Company").</p>
-<p>By visiting and/or using the App, you agree to the terms of this Privacy Policy and it shall be deemed that you have read in full, accepted and agreed to the terms herein. The Company reserves the right to modify the terms contained in this Privacy Policy at any time by posting such modifications on the App. The modified Privacy Policy would be effective from the date of modification posted by the Company on the App. If you do not agree to any term contained in this Privacy Policy, please immediately cease your use of the App.</p>
-<p>This Privacy Policy is intended to be compliant with the requirements set out in the General Data Protection Regulations issued by the European Union (the "GDPR") to the extent applicable.</p>
-<p>Information that is collected by the Company on the App shall be used by the Company only for the purpose of providing the Services (as defined below), and such information shall not be used, sold, transferred or rented in a manner that is not set out in this Privacy Policy.</p>
-<h2>Information Collected by the Company</h2>
-<p>In providing the various services that are available on the App (the "Services"), the Company may have to collect certain personal information from you.</p>
-<h3>Active Collection</h3>
-<p>This refers to the information that is actively provided by you while registering on the App, while browsing on the App, while requesting for a demo or other information on the App or while making payments using the payment gateway on the App etc. This would also include information relating to yourself (such as your interests and preferences, kind of people you would like to meet via the App etc.) that you would be providing on the App to avail the Services. Such information may be provided in writing, or via audio / video clips.</p>
-<h3>Passive Collection</h3>
-<p>This refers to the information that is gathered by the Company using tracking code technology, browser cookies etc. for collecting information about your usage of our App. This information may be used by the Company for internal research to understand User demographics, interests and behaviour with a view to improving the functionality of the App. This information may include the URL of the website that you visited just before visiting the App or which one you go to after visiting the App, your computer browser information, and your IP address.</p>
-<h3>Contact Information</h3>
-<p>If you contact us directly, we may receive information about you such as your name, email address, phone number and the contents of the message. When you register on the App, we would also receive any chats, photo, audio or video recording and/or attachments you may share on the App, and any other information you may choose to provide such as information regarding your career, bio, education etc.</p>
-<h3>Photo Verification</h3>
-<p>We may ask you to upload a photograph at the time of your registration on the App to ensure that there are no fake or multiple accounts. This also helps us avoid fraudulent use of the App. The App might also collect ID proofs to verify age, which shall be deleted immediately after verification.</p>
-<h3>Sexual Orientation / Preference</h3>
-<p>You would be sharing your gender identity, sexual orientation and preferences with us so as to enable us to provide you the Services.</p>
-<h3>Interactions with Other Users</h3>
-<p>We process your chats and interactions with other users of the App so as to keep the Services and its use safe for all. These interactions would also be subject to our policy on moderating content on the App.</p>
-<h3>Testimonials</h3>
-<p>We may run surveys for research purposes and may contact you to find out if you would like to take part in them. Such surveys and marketing campaigns are optional.</p>
-<h3>Other Information</h3>
-<p>While you use the App, the Company may collect information about your IP address, MAC ID and the browser you are using as well as timestamps.</p>
-<h3>Passive Collection of Data</h3>
-<p>The Company follows a standard procedure of using log files. The information collected includes internet protocol (IP) addresses, browser type, ISP, date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any personally identifiable information.</p>
-<p>With your consent, we collect your geolocation (latitude and longitude) from your device, in order to show real users around you.</p>
-<h3>Data Retention</h3>
-<p>Any information provided by you on the App is provided voluntarily and at your own risk. We store the information for as long as you are a User and/or as necessary to fulfil the purposes for which it was collected, to provide Services, resolve disputes, pursue legitimate business purposes, enforce agreements, prevent fraud, and comply with applicable laws.</p>
-<p>Even if you delete your account, the Company may retain your information for a short period until it can be removed from servers and for compliance with legal obligations.</p>
-<p>You shall be responsible for the accuracy of information provided. For any changes, notify the Company at <a href="mailto:support@taken.today">support@taken.today</a>.</p>
-<p>To discontinue use of the App or withdraw consent, notify the Company at <a href="mailto:support@taken.today">support@taken.today</a>.</p>
-<h2>User Rights</h2>
-<p>You can request to receive an exported file of personal data we hold about you. You can also request that we rectify or erase any personal data. Please send your request to <a href="mailto:support@taken.today">support@taken.today</a>.</p>
-<ul>
-<li><strong>Updating your account information:</strong> Review information by logging into your account page and adjusting settings under "Account".</li>
-<li><strong>Email communications:</strong> Update preferences by accessing email preferences in your account settings.</li>
-<li><strong>Telephone/Text communications:</strong> You will receive text communications for OTP and other services. Promotional contact only with your agreement.</li>
-<li><strong>Deletion or Other Request:</strong> Use the delete account function in the app. We will respond within a reasonable timeframe.</li>
-</ul>
-<h2>Use of Your Personal Information</h2>
-<ul>
-<li><strong>To provide the Services:</strong> We use information to enable you to interact with other Users, recommend you to other Users and enable you to connect.</li>
-<li><strong>To contact you:</strong> Contact information is used for provision of Services, customer service, updates, and marketing purposes.</li>
-<li><strong>Moderation Policy:</strong> We use automated systems and moderators to monitor accounts and messages for breaches of our Terms of Use.</li>
-<li><strong>To improve quality:</strong> We use your information to improve Services functionality and develop new products and features.</li>
-<li><strong>For security purposes:</strong> To protect our company, customers, and websites.</li>
-<li><strong>For marketing purposes:</strong> To send information about promotions and notify you of new features.</li>
-<li><strong>Transactional communications:</strong> We may contact you via emails, SMSs, WhatsApp or other online modes.</li>
-</ul>
-<p>We encourage you to consider carefully what information you disclose on the App. We do not recommend putting sensitive data such as email addresses, phone numbers, credit card details on your profile.</p>
-<h2>Processing of Data</h2>
-<ul>
-<li><strong>Other Users:</strong> We share your information with other Users to enable them to connect with you.</li>
-<li><strong>Service Providers:</strong> We share with persons contracted for assistance such as payment processors.</li>
-<li><strong>Compliance with law:</strong> We may share information to respond to a court order, subpoena, or government request.</li>
-<li><strong>Mergers and Acquisitions:</strong> If the Company sells its business, your personal information may be transferred to the new entity.</li>
-</ul>
-<h2>Additional Information for California Users</h2>
-<p>"Personal Information" has the meaning given in the California Consumer Privacy Act of 2018 ("CCPA"). We do not sell your personal information. We use it for internet-based targeted advertising of our own services. We do not offer financial incentive programs.</p>
-<h2>Security of Your Information</h2>
-<p>The Company discloses personally-identifying information only to employees, contractors, and affiliated organizations that need to know it to process transactions or provide Services, and that have agreed not to disclose it. We take all measures reasonably necessary to protect against unauthorized access, use, alteration, or destruction.</p>
-<p>We follow generally accepted standards to protect personal information. For questions about security, contact us at <a href="mailto:support@taken.today">support@taken.today</a>.</p>
-<p>However, no security measures are perfect or impenetrable. Neither the Company nor any of its employees would have access to the password relating to your User account. You are solely responsible for protecting your login credentials.</p>
-<h2>Cookie Policy</h2>
-<p>The Company uses traffic log cookies to identify which pages are being used. This helps analyse data about web page traffic and improve the App. This information is used only for statistical analysis and then removed.</p>
-<p>The Company does not have control over cookies placed by third party links on the App.</p>
-<h2>Third Party Sites</h2>
-<p>If you click on third party links available on the App, you may be taken to websites the Company does not control. This Privacy Policy does not apply to those websites.</p>
-<h2>Social Media Features</h2>
-<p>The App includes Social Media Features such as WhatsApp and Facebook buttons, Google Logins and Apple Logins. These may collect your IP address and set cookies. Your interactions with these features are governed by the privacy policy of the entity providing them.</p>
-<h2>Our Policy Toward Children</h2>
-<p>The Services are available to persons over the age of eighteen (18) years. Persons below 18 shall not be entitled to use the App or Services unless through a parent or legal guardian's account.</p>
-<h2>Redressal of Grievances</h2>
-<p>If you have questions or grievances, reach out to us at <a href="mailto:support@taken.today">support@taken.today</a> (the "Grievance Officer"). Complaints will be acknowledged within 24 hours and addressed within 15 days.</p>
-<h2>Miscellaneous Provisions</h2>
-<p><strong>Force Majeure:</strong> The Company shall not be responsible for any cessation, interruption or delay due to natural disaster, war, pandemic, terrorism, labor strike, lockout, or boycott.</p>
-<p><strong>No Waiver:</strong> A delay or failure to exercise any right will not constitute a waiver.</p>
-<p><strong>Notices:</strong> All notices shall be in writing and in English. Notice to the Company: <a href="mailto:support@taken.today">support@taken.today</a></p>
-<h2>Governing Law</h2>
-<p>This Privacy Policy is governed by Indian laws. This App originates from Karnataka, India. By using this App, you consent to the jurisdiction of the courts in Bengaluru, Karnataka.</p>
+
+<p>We understand how important your privacy is. This Privacy Policy explains how we collect, use, and protect the information you share with us through the Taken app (the "App"). Taken App Private Limited ("Company"), incorporated under the Indian Companies Act, 2013, with its registered office at 5th Cross, 30th Main, HSR Layout, 1st Sector, Bangalore, Karnataka 560 102, operates this App.</p>
+
+<p>Your privacy is our highest priority. By accessing or using the App, you acknowledge that you have read, understood, and agreed to the terms of this <a href="privacy.html">Privacy Policy</a>. We may update this policy occasionally, and any changes will be posted on the App with the updated effective date. If you disagree with any part of this policy, please stop using the App immediately.</p>
+
+<p>This policy is designed to comply with applicable privacy laws, including the European Union's General Data Protection Regulation (GDPR), where relevant.</p>
+
+<p>The information we collect through the App is used solely to provide and improve our services. We do not sell, rent, or share your personal data in any way not described here.</p>
+
+<div class="delete-box">
+  <h3>How to Delete Your Account</h3>
+  <p>If you wish to delete your account and all associated data, please follow these steps:</p>
+  <ol>
+    <li>Log in to the Taken mobile app.</li>
+    <li>Navigate to your <strong>My Profile</strong> page.</li>
+    <li>Scroll down to the bottom of the page and select the <strong>Delete Account</strong> button.</li>
+    <li>Confirm your choice when prompted.</li>
+  </ol>
+  <p>Once deleted, your data will be permanently removed from our systems within 90 days. Should you change your mind, you may reactivate your account by logging in within this 90-day window.</p>
 </div>
+
+<h2>Information We Collect</h2>
+<p>In order to provide the variety of services available on the Taken App (the "Services"), we may need to collect certain personal information from you. This information generally includes the following:</p>
+
+<h3>Active Collection</h3>
+<p>This refers to information you actively provide when you:</p>
+<ul>
+  <li>Register on the App</li>
+  <li>Browse or interact with features on the App</li>
+  <li>Request demos or other information</li>
+  <li>Make payments via our payment gateway</li>
+  <li>Share details about yourself (such as your interests, preferences, and the type of people you wish to meet)</li>
+  <li>Upload content such as written information, audio, or video clips</li>
+</ul>
+<p>Examples of actively collected data include your name, contact details, photos, audio/video recordings, career information, education, and bio.</p>
+
+<h3>Passive Collection</h3>
+<p>This refers to information we collect automatically through technology like tracking codes, cookies, or similar tools to understand how you use the App. This helps us improve your experience and the functionality of the App.</p>
+<p>Examples include:</p>
+<ul>
+  <li>The URL of the website you visited before or after the App</li>
+  <li>Your device's browser type and IP address</li>
+  <li>Usage patterns and demographics</li>
+</ul>
+<p>Note: We do not actively collect personal information from visitors who do not register or use our Services, but some parts of this Privacy Policy still apply to them.</p>
+
+<h2>Details on Actively Collected Information</h2>
+<ul>
+  <li><strong>Contact Information:</strong> If you reach out to us directly, we may collect your name, email address, phone number, and message content. During registration, we collect your name, email, phone number, profile photos, chats, and any attachments you share.</li>
+  <li><strong>Photo Verification:</strong> To prevent fake or duplicate accounts and ensure a safe community, we may request you to upload a photo for verification. We may also collect government-issued ID proofs solely to verify age, which are deleted immediately after verification.</li>
+  <li><strong>Sexual Orientation &amp; Preferences:</strong> You may share your gender identity, sexual orientation, and preferences to help us personalize your experience.</li>
+  <li><strong>User Interactions:</strong> We process your chats and interactions on the App to maintain safety and enforce our content moderation policies.</li>
+  <li><strong>Surveys &amp; Feedback:</strong> Occasionally, we may invite you to participate in surveys, provide testimonials, or join marketing campaigns. Participation is optional and you will be informed at the time of contact.</li>
+  <li><strong>Other Information:</strong> We may collect technical information such as your IP address, device MAC ID, browser type, and timestamps during your use of the App.</li>
+</ul>
+
+<h2>Details on Passively Collected Information</h2>
+<p>We use standard server log files that automatically record visitors' information when they access websites. This includes IP addresses, browser type, Internet Service Provider (ISP), date and time stamps, referring/exit pages, and clicks. This data is not linked to personally identifiable information and is used for analyzing trends, administering the site, tracking user movements, and gathering demographic information.</p>
+<p>With your explicit consent, we may collect your geolocation (latitude and longitude) from your device to help show you real users nearby.</p>
+
+<h2>Your Responsibilities and Data Retention</h2>
+<p>You provide all information voluntarily and at your own risk. While we take strong measures to protect your data, we cannot guarantee absolute security against data loss or theft.</p>
+<p>We retain your data only as long as necessary to provide the Services, meet legal obligations, resolve disputes, enforce agreements, prevent fraud, or pursue legitimate business purposes. Even after you delete your account, some data may be retained temporarily to comply with legal requirements.</p>
+<p>Please ensure the accuracy of the information you provide. If your information changes or is incorrect, notify us promptly at <a href="mailto:support@taken.today">support@taken.today</a>. Providing false or incomplete information may lead to restrictions or disabling of your account.</p>
+<p>If you wish to stop using the App, delete it, or withdraw consent for data processing, please notify us at <a href="mailto:support@taken.today">support@taken.today</a>. Upon discontinuation or withdrawal of consent, we will retain your data only as required by law and then permanently erase it.</p>
+
+<h2>User Rights Regarding Your Data</h2>
+<ul>
+  <li><strong>Access and Portability:</strong> If you have provided any personal information on the App, you can request a copy of the data we hold about you. This includes any information you have shared with us. To do so, please send your request to <a href="mailto:support@taken.today">support@taken.today</a>.</li>
+  <li><strong>Correction and Deletion:</strong> You can also request that we correct or erase your personal data.
+    <ul class="sub-list">
+      <li>To update your account information, log in to your account and make changes under the "Account" settings.</li>
+      <li>To delete your account and all associated data, use the "Delete Account" feature within the App. We will respond to such requests promptly and in accordance with applicable law.</li>
+    </ul>
+  </li>
+  <li><strong>Communication Preferences:</strong>
+    <ul class="sub-list">
+      <li>You may manage your email preferences in your account settings to stop receiving unwanted emails.</li>
+      <li>We may send you text messages through SMS or WhatsApp or other communication channels for service-related purposes such as OTPs and verification. You will receive marketing or promotional messages only if you have explicitly consented to them.</li>
+    </ul>
+  </li>
+  <li><strong>Data Retention:</strong> We retain your personal data as long as your account remains active or as necessary to provide you with the Services. We may also keep certain information to comply with legal obligations, resolve disputes, or enforce agreements.</li>
+</ul>
+
+<h2>How We Use Your Personal Information</h2>
+<ul>
+  <li><strong>Providing Services:</strong> We use your data to enable you to use the App's features, including connecting with other users, recommending matches, and displaying your profile to others.
+    <ul class="sub-list">
+      <li>Please be cautious about the information you share publicly; avoid sensitive details such as your full name, address, credit card info, or government IDs on your profile, as sharing such data carries risks.</li>
+    </ul>
+  </li>
+  <li><strong>Communication:</strong> We use your contact details to communicate important information about the App and Services, including customer support, updates, and marketing messages.</li>
+  <li><strong>Moderation and Safety:</strong>
+    <ul class="sub-list">
+      <li>We use automated tools and human moderators to review profiles, photos, messages, and other content to ensure compliance with our Terms of Use and Privacy Policy.</li>
+      <li>Accounts or messages that violate our policies may be warned, restricted, or blocked. We reserve the right to suspend or terminate accounts for policy violations.</li>
+    </ul>
+  </li>
+  <li><strong>Improving Services:</strong> We analyze how you use the App to improve existing features and develop new ones, ensuring a better user experience.</li>
+  <li><strong>Security:</strong> Your information may be used to protect our users, the Company, and the integrity of the App from fraud, abuse, or other harmful activity.</li>
+  <li><strong>Marketing:</strong> With your consent, we may send promotional materials, special offers, and updates about new features or products.</li>
+  <li><strong>Transactional Communications:</strong> We may contact you via email, SMS, WhatsApp, or other online platforms to keep you informed about your account and our Services.</li>
+  <li><strong>Legal Compliance:</strong> We will use your information only as permitted by law.</li>
+</ul>
+
+<h2>How We Share Your Data</h2>
+<ul>
+  <li><strong>With Other Users:</strong> To enable connections and interactions, your information may be shared with other users of the App.</li>
+  <li><strong>With Service Providers:</strong> We may share your data with trusted third-party service providers who assist us in delivering the Services, such as payment processors and communication platforms.</li>
+  <li><strong>Legal Requests:</strong> We may disclose your information if required by law, such as in response to a court order, subpoena, or request from government authorities.</li>
+  <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of all or part of our business, your information may be transferred to the new owner.</li>
+</ul>
+
+<h2>Additional Information for California Users</h2>
+<ul>
+  <li><strong>Definition:</strong> "Personal Information" in this section is as defined by the California Consumer Privacy Act of 2018 ("CCPA"), excluding information specifically exempted under the law.</li>
+  <li><strong>No Sale of Personal Data:</strong> We do <strong>not</strong> sell your personal information in any form. However, we may use the personal data you provide for internet-based targeted advertising of our own services.</li>
+  <li><strong>No Financial Incentives:</strong> We do not offer financial incentive programs to our users for their personal information.</li>
+</ul>
+
+<h2>Security of Your Information</h2>
+<ul>
+  <li>We limit access to your personally-identifying information to employees, contractors, and affiliates who need it to provide the Services and have agreed to keep it confidential.</li>
+  <li>We implement industry-standard security measures to protect your data during transmission and while stored on our systems.</li>
+  <li>Despite our efforts, no security system is completely foolproof. We cannot guarantee absolute security of your information.</li>
+  <li>The Company is not responsible for breaches caused by users or third parties circumventing security or privacy settings.</li>
+  <li>You are solely responsible for safeguarding your login credentials. We do <strong>not</strong> have access to your password.</li>
+  <li>If you suspect unauthorized use of your account, please contact us immediately at <a href="mailto:support@taken.today">support@taken.today</a>.</li>
+  <li>We are not liable for unauthorized disclosures or security breaches caused by events beyond our reasonable control, such as hacking, government actions, or technical failures.</li>
+</ul>
+
+<h2>Cookie Policy</h2>
+<ul>
+  <li>A cookie is a small file stored on your device that helps analyze web traffic and improve user experience.</li>
+  <li>We use cookies to track usage of the App to improve its functionality and performance. All data collected is used only for statistical analysis and is anonymized.</li>
+  <li>Cookies may store your name and email during your active session for convenience but are deleted when you clear your browser data.</li>
+  <li>We do not control cookies placed by third-party websites linked within the App and are not responsible for their privacy practices.</li>
+</ul>
+
+<h2>Third-Party Sites</h2>
+<ul>
+  <li>Links to third-party websites may appear on the App, but these sites are not controlled by us.</li>
+  <li>Our Privacy Policy does <strong>not</strong> apply to those external sites.</li>
+  <li>We are not responsible for any misuse of your data by third-party websites.</li>
+  <li>Third-party advertising companies may serve ads on our App and may collect non-identifiable information about your visits to serve relevant ads.</li>
+</ul>
+
+<h2>Social Media Features</h2>
+<ul>
+  <li>The App includes social media tools like WhatsApp, Facebook buttons, Google and Apple Logins, and sharing widgets.</li>
+  <li>These features may collect your IP address, browsing data, and use cookies to function.</li>
+  <li>Social Media Features are either hosted by third parties or directly on the App, and their privacy policies govern data collection, not ours.</li>
+</ul>
+
+<h2>Our Policy Toward Children</h2>
+<ul>
+  <li>The App and Services are available only to persons aged <strong>18 years or older</strong>.</li>
+  <li>Persons under 18 may use the App only through the account of a parent or legal guardian.</li>
+</ul>
+
+<h2>Redressal of Grievances</h2>
+<ul>
+  <li>If you have any questions, concerns, or complaints about the App or how your data is handled, please contact our Grievance Officer at <a href="mailto:support@taken.today">support@taken.today</a>.</li>
+  <li>We will aim to acknowledge your complaint within 24 hours and aim to resolve it within 15 days.</li>
+  <li>If we need more information from you to address the grievance, we will notify you promptly.</li>
+</ul>
+
+<h2>Miscellaneous Provisions</h2>
+
+<h3>Force Majeure</h3>
+<p>The Company shall not be liable for any failure, delay, interruption, or cessation in the performance of its obligations under this Privacy Policy caused by events beyond its reasonable control, including but not limited to earthquakes, floods, fires, storms, natural disasters, acts of God, war, pandemics, terrorism, armed conflicts, labor strikes, lockouts, or boycotts. The Company reserves the right, at its sole discretion and without prior notice, to suspend or discontinue the operation of the App and the provision of the Services.</p>
+
+<h3>No Waiver</h3>
+<p>Any delay or failure by the Company to enforce any right or provision of this Privacy Policy shall not be construed as a waiver of such right or provision.</p>
+
+<h3>Notices</h3>
+<p>All notices between the Company and Users must be in writing and in English. Notices from the Company to Users shall be sent via email or prepaid internationally-recognized courier to the email address or mailing address provided by the User at registration, or to any updated address notified by the User. Notices from Users to the Company shall be sent to the following contact:</p>
+
+<div class="notice-box">
+  <p><strong>Notice to the Company:</strong><br>Email: <a href="mailto:support@taken.today">support@taken.today</a></p>
+  <p><strong>Notice to User:</strong><br>Sent to the email address provided during registration on the App.</p>
+</div>
+
+<h2>Governing Law and Jurisdiction</h2>
+<p>This Privacy Policy shall be governed by and construed in accordance with the laws of India, specifically those applicable in the State of Karnataka. By using the App, you consent to the exclusive jurisdiction and venue of the courts located in Bengaluru, Karnataka, for any dispute arising out of or relating to this Privacy Policy.</p>
+
+</div>
+
 <footer class="footer">
   <div class="footer-inner">
     <a href="index.html" class="logo"><img src="logo.png" alt="Taken Logo"><span class="logo-text">Taken</span></a>
     <div class="footer-links"><a href="contact.html">Contact us</a><a href="faq.html">FAQ's</a><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></div>
   </div>
-  <div class="footer-copyright">Copyright Taken 2023. All rights reserved.</div>
+  <div class="footer-copyright">Copyright Taken 2026. All rights reserved.</div>
 </footer>
 
 <script>
